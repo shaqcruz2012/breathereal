@@ -1,8 +1,8 @@
 # BreatheReal
 " BreatheReal is the simplest music sharing app to share once a day your real life in music with friends.
-Every day at a different time, everyone is notified simultaneously to capture and share a song. " 
+Every day at a different time, everyone is notified simultaneously to search for and share a song. " 
 
-Allow users Display Spotify profile information, search for and Publish a post that includes track from Spotify 
+Allow users to Display Spotify profile information, search for and Publish a post that includes track from Spotify 
 Have Kanye West as a built-in 'User' that Publishes random Kanye West song via Spotify API and random quote via kanye.rest API 
 
 # Spotify API 
