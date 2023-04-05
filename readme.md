@@ -17,3 +17,20 @@ Every day at a different time, everyone is notified simultaneously to take a bre
 
 # stretch
 - Get Recommendations  
+
+# resources:
+- react-icons.github.io => clean bootstrap icon
+- https://bere.al/en landing styling
+- https://uxplanet.org/the-case-for-bereal-3ec81224a37 ux notes
+
+# full-stack application requirements
+- Implements the use of at least two 3rd-party APIs
+- Implements the use of at least two CRUD-ing resources
+- Implements User Authentication
+- Implements proper back-end Models and Database design
+- Implements proper styling, presentation, and site navigation
+- Implements a feature-rich application demonstrating proper web design principles
+
+# SC 4/4/2023 6:15 PM Naming
+bosc, the name of a pear is a male name. App store search found Kiwi a similar iOS app that uses the spotify API but has users swipe on music cards.  
+
