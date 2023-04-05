@@ -39,3 +39,5 @@ pip install django
 python -m django startproject navel
 python manage.py startapp app
 - set up settings, views, urls
+
+npm create vite (installed vite project name frontend)
