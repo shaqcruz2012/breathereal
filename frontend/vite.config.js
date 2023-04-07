@@ -13,8 +13,9 @@ export default defineConfig({
     // delete the old build when creating the new build/
     // this is the default behavior unless outDir is outside of current directory
     emptyOutDir: true,
+    sourcemap:true
   },
-  plugins: [react]
+  plugins: [react()]
 })
 
 /* Default load SC 4/5/2023 7:37 PM
