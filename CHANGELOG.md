@@ -1,3 +1,6 @@
+# SC 4/4/2023 6:15 PM Naming
+Navel. App store search found Kiwi a similar iOS app that uses the spotify API but has users swipe on music cards.  
+
 SC 4/5/2023 5:33 PM
 - We are building the react application and serving the built react app from djangos static folder
 - going to add Django REST framework to our views
@@ -52,3 +55,25 @@ npm run build (creates dist (assets and everything in public folder but minified
 
 SC 4/5/2023 8:08 PM
 Debugging 32:17 
+
+SC 4/6/2023 10:19 PM
+$ vite build
+(./src/core/Core.cpp l.710): Opening the file: build
+Cannot open file build
+Aborted
+
+Turned on env no result
+Reinstalled Vite no result
+Turned off env new error
+
+vite v4.2.1 building for production...
+✓ 0 modules transformed.
+✓ built in 10ms
+Could not resolve entry module "index.html".
+error during build:
+
+SC 4/6/2023 10:23 PM
+Problem solved. was running the wrong command. Correct command is:
+  cd frontend
+  npm i (records in package json then installs module in node modules)
+  npm run build (creates dist (assets and everything in public folder but minified))
