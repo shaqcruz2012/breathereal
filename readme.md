@@ -31,6 +31,8 @@ Every day at a different time, everyone is notified simultaneously to take a bre
 - Implements proper styling, presentation, and site navigation
 - Implements a feature-rich application demonstrating proper web design principles
 
+# Frontend
+
 # SC 4/4/2023 6:15 PM Naming
-bosc, the name of a pear is a male name. App store search found Kiwi a similar iOS app that uses the spotify API but has users swipe on music cards.  
+Navel. App store search found Kiwi a similar iOS app that uses the spotify API but has users swipe on music cards.  
 

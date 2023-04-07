@@ -41,3 +41,14 @@ python manage.py startapp app
 - set up settings, views, urls
 
 npm create vite (installed vite project name frontend)
+
+build react application so django can serve it
+eefault viteconfig doesnt meet our needs, we need vite to build in a location django can find it
+
+cd frontend
+npm i (records in package json then installs module in node modules)
+npm run build (creates dist (assets and everything in public folder but minified))
+
+
+SC 4/5/2023 8:08 PM
+Debugging 32:17 
