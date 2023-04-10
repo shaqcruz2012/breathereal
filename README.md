@@ -62,6 +62,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
+https://trello.com/b/iGL7r4wl/solo-project-tango-platoon
+
 - [ ] Implements the use of at least two 3rd-party APIs
 - [ ] Implements the use of at least two CRUD-ing resources
 - [ ] Implements User Authentication
