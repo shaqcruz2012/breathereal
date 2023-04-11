@@ -1,3 +1,5 @@
+This is a log and scratchpad for the project.
+
 # SC 4/4/2023 6:15 PM Naming
 Navel. App store search found Kiwi a similar iOS app that uses the spotify API but has users swipe on music cards.  
 
@@ -110,7 +112,7 @@ Go to jeader create same ticheck
   pit push origin main
 
   "just making sure I have it down, you create a branch and push the branch, then on GitHub create a pull request so you can merge?" Yes.
-  
+
 Create Wireframe
   - Use Figma or TL Draw
   Homepage, user Login page, API calls
