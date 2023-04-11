@@ -80,42 +80,11 @@ Problem solved. was running the wrong command. Correct command is:
   npm i (records in package json then installs module in node modules)
   npm run build (creates dist (assets and everything in public folder but minified))
 
-SC 4/10/2023 2:09 ProblemToDoApp
-https://github.com/tangoplatoon/curriculum/blob/main/week-10/day1/project-management.md
 
-Create SQL schema
-Can Export
-Go to jeader create same ticheck
-  git branch PROJECT-001
-  git branch
-    shows PROJECT-001 and main
-  git checkout PROJECT-001
-  touch postgresql.md
-  issues, new issues, drop img, get link
 
-  /co
-  # SQu Schema
-  ![drawSQ](url)
 
-  git add .
-  git commit -m 'PROJECT-001: Create SQL schema'
-  git push origin PROJECT-001
 
-  # add a reviewer
-  Settings
-  Collaborates > Add the collaborators you need
-  > tkoenig97
-  > Second Person
 
-  git checkout main
-  git merge PROJECT-001
-  pit push origin main
-
-  "just making sure I have it down, you create a branch and push the branch, then on GitHub create a pull request so you can merge?" Yes.
-
-Create Wireframe
-  - Use Figma or TL Draw
-  Homepage, user Login page, API calls
-  - Home has navbar, couple of columns
-  - Login has circle, input fields, submit
-  - API Call for Posts
+# SC 4/11/2023 3:25 PM # Switching to Trello
+Going forward will be using Trello on the project.
+https://trello.com/b/iGL7r4wl/solo-project-tango-platoon

@@ -32,7 +32,9 @@ CREATE TABLE PostTrack (
     FOREIGN KEY (post_id) REFERENCES Post(post_id),
     FOREIGN KEY (track_id) REFERENCES Track(track_id)
 );
+I want to have an img to the track and link 
 
+SC 4/10/2023 11:54 AM
 "In this updated schema, the "Post" table remains the same, allowing each user to make multiple posts with different content. The "Track" table is introduced to store information about the tracks, such as track name, artist, album, and URL. The "PostTrack" table is a linking table that establishes a many-to-many relationship between the "Post" and "Track" tables. Each row in the "PostTrack" table represents a post-track association, with the "post_id" and "track_id" columns serving as foreign keys referencing the "Post" and "Track" tables, respectively.
 
  in the "PostTrack" table, the primary key is defined as a composite key consisting of both "post_id" and "track_id" columns. This means that the combination of these two columns must be unique in order to uniquely identify a row in the "PostTrack" table.
