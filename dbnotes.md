@@ -13,6 +13,7 @@ CREATE TABLE Post (
     user_id INT NOT NULL,
     content TEXT NOT NULL,    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    location TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id),
 );
 

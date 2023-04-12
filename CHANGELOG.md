@@ -88,3 +88,20 @@ Problem solved. was running the wrong command. Correct command is:
 # SC 4/11/2023 3:25 PM # Switching to Trello
 Going forward will be using Trello on the project.
 https://trello.com/b/iGL7r4wl/solo-project-tango-platoon
+
+Next task is to Connect a Full Stack Application with Django, PostgreSQL, and React
+
+Right now have Django and React scaffolding set up, I want to finalize the DB Schema design before building up my models
+
+Building a Spotify API Searcher in React:
+https://www.youtube.com/watch?v=1PWDxgqLmDA 
+Demo of building a search feature that accesses Spotify API
+It is a Component where you search for an Artist (Taylor Swift) and it returns all the Albums of that artist.
+I want to modify this to search for a Track and returns all Track Objects matching, displaying Album Image
+
+- I want to add to the track models:
+- Album img
+- Use this as a Component, where on click you add that track to your post context?
+
+https://medium.com/@sedwardscode/creating-a-spotify-app-on-the-spotify-developer-page-16907b5872e8
+
