@@ -13,7 +13,9 @@ https://trello.com/b/iGL7r4wl/solo-project-tango-platoon
 git branch PROJECT-00x
 git branch
 git checkout PROJECT-00x
-  touch new files
+  ...
+  ...
+  Some work
 git branch (
   * PROJECT-001
     master

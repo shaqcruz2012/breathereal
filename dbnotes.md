@@ -33,6 +33,7 @@ CREATE TABLE PostTrack (
     FOREIGN KEY (post_id) REFERENCES Post(post_id),
     FOREIGN KEY (track_id) REFERENCES Track(track_id)
 );
+
 I want to have an img to the track and link 
 
 SC 4/10/2023 11:54 AM

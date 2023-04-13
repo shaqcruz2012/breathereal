@@ -71,9 +71,9 @@ WSGI_APPLICATION = 'navel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         # postgres
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'django_auth',
     }
 }
 
@@ -113,9 +113,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / "static"]
+STATICFILES_DIRS = [ BASE_DIR / "/static/",]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# When not using the default model we need to add this
+AUTH_USER_MODEL = 'app.CustomUser'
