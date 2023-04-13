@@ -2,11 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 """_
-    To make user login, We will be using AbstractUser instead of the default user model
-    CustomUser model inherits from AbstractUser, 
-        provides fields like username, email, password needed for auth
-        allows is_kanye_west feature
-    For future reference, dont forget to update your settings.py =>
         AUTH_USER_MODEL = 'app.CustomUser'
 """
 class CustomUser(AbstractUser):
@@ -39,3 +34,18 @@ class PostTrack(models.Model):
     track = models.ForeignKey(Track, on_delete=models.CASCADE)
     class Meta:
         unique_together = (('post','track'),)
+
+
+
+"""
+If this all breaks from Week9-4 2:30
+class App_User(AbstractUser):
+    email = models.EmailField(blank=False, null = False, unique = True)
+    name = models.CharField(max_length = 255, null = False, blank = False)
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f"{self.name} | {self.email}"
+
+"""
