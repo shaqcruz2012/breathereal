@@ -21,6 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
+# SECURITY WARNING: Access the password from .env using os.environ!
+DB_PASSWORD = os.environ['DB_PASSWORD']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -77,7 +80,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # postgres
-        'NAME': 'django_auth',
+        'NAME': 'server.db',
+        'USER' : 'shaqc',
+        'PASSWORD' : 'new_password',
+        'HOST' : 'localhost',
+        'PORT' : '5433'
     }
 }
 
