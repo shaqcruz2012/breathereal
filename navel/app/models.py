@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 """_
-        AUTH_USER_MODEL = 'app.CustomUser'
+        AUTH_USER_MODEL = 'app.App_User'
         SC 4/13/2023 4:28 PM:
             Kanye West issue
             Create as user, not as column
@@ -19,9 +19,7 @@ class App_User(AbstractUser):
 
     def __str__(self):
         return f"{self.name} | {self.email}"
-# class CustomUser(AbstractUser):
-    # user_id = models.AutoField(primary_key=True)
-    # is_kanye_west = models.BooleanField(default=False)
+
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
@@ -75,8 +73,9 @@ class Child(Bot):
         # Constructor for Child class
         super().__init__()  # Call the parent class constructor
     def get_kanye_west_content(self):
-        # Logic for fetching content from kanyre.rest API
+        # Logic for fetching content from kanye.rest API
         pass
+
 
 
 """

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+    'app'
+    
 ]
 
 MIDDLEWARE = [
@@ -137,4 +138,4 @@ STATICFILES_DIRS = [ BASE_DIR / "static",]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # When not using the default model we need to add this
-AUTH_USER_MODEL = 'app.CustomUser'
+AUTH_USER_MODEL = 'app.App_User'
