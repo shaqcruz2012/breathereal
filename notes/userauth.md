@@ -11,7 +11,7 @@ So far
 - Models and Migrations are updated
 - updated the settings.py Database object
 
-Goal today is to do the following:
+[x]Goal today is to do the following:
 - Link views to models and httprequests
   Import from.models *modelname* as *whatever you want )*
 - $pip install djangorestframework
