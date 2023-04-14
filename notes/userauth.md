@@ -46,3 +46,32 @@ Serene Help:
     Can create local user account on application that is tied to user spotify
   [] Django OAuth Libary exists
   
+# Explaining Views from Francisco W9D4
+user_sign_up: 
+- This view function handles user sign-up functionality. 
+- It expects a POST request and retrieves the email, password, and name from the request data. 
+- It then creates a new App_User model object with the provided information and saves it to the database. 
+- It returns a JSON response indicating whether the sign-up was successful or not.
+
+user_log_in: 
+- This view function handles user login functionality. 
+- It expects a POST request and retrieves the email and password from the request data. 
+- It uses Django's authenticate function to check if the provided email and password match a user in the database. 
+- If a valid user is found, it creates a session ID for the user and returns a JSON response with the user's email and name.
+
+curr_user: 
+- This view function returns information about the currently logged-in user.
+- It expects a GET request and checks if the user is authenticated.
+- If the user is authenticated, it serializes the user object to JSON and returns a JSON response with the user's name and email.
+
+user_log_out: 
+- This view function handles user logout functionality. 
+- It expects a POST request and removes the session ID for the current user. 
+- It returns a JSON response indicating whether the logout was successful or not.
+
+send_the_index: 
+- This view function returns the contents of an HTML file named index.html located in the static directory. 
+- It is typically used to serve the index file for a React project.
+
+Note: The code uses @api_view decorator from Django REST framework, which allows defining views that can handle different HTTP methods (e.g., POST, GET) in a single view function. 
+- The specific HTTP methods that each view function can handle are specified using the list of method names as arguments to @api_view decorator (e.g., @api_view(["POST"]) specifies that the view function can handle POST requests).

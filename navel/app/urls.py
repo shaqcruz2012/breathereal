@@ -8,7 +8,3 @@ urlpatterns = [
     path('logout/', views.user_log_out, name= 'signout'),
     path('', views.send_the_index, name='index')
 ]
-
-# urlpatterns = [
-#     path('', views.send_the_homepage)
-# ]
