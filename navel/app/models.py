@@ -3,6 +3,12 @@ from django.db import models
 
 """_
         AUTH_USER_MODEL = 'app.CustomUser'
+        SC 4/13/2023 4:28 PM:
+            Kanye West issue
+            Create as user, not as column
+            https://kanye.rest/
+            Special Users => permission lvls
+            KanyeBot that doesnt have useracct
 """
 class CustomUser(AbstractUser):
     user_id = models.AutoField(primary_key=True)
@@ -11,6 +17,18 @@ class CustomUser(AbstractUser):
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    # not required for user^
+    # field (not required) bot
+    
+    # if user display name user, n 
+    # if user is empty, have system check bot field
+    # elif customvalidation one of these two must exist
+    # bot hard coded into app can make posts using API
+    # users can do the same
+    # bot component sched tasks, once every 12 hours call API and post name Author=KanyeBotName
+    # If KW 
+    #   unit tests would create a user that might post KW
+    #   divorce backdoor 
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.TextField()
@@ -35,7 +53,10 @@ class PostTrack(models.Model):
     class Meta:
         unique_together = (('post','track'),)
 
+# class Bot()
 
+# class Child(Bot)
+    # inherits from Kanyre
 
 """
 If this all breaks from Week9-4 2:30

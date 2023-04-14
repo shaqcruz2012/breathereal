@@ -20,3 +20,25 @@ Goal today is to do the following:
 - from rest_framework.decorators import api_view 
 - (if this line isn’t showing up check the correct python interpreter is being selected by vs code)
 - If everything is good you should be able to $ npm run build in the front end to have assets populate in django
+
+Serene Help:
+  .env can look diff ways
+    in .env each line, export <VARNAME>='thevalueofvar'
+  once .env is saved, app does not load (unless direnv or similar) .env. Can automate in long term
+  before starting app, 
+    source path/to/.env
+    loads environemnt vars you put in .env file into env of terminal
+    when application is ran, can load in the variables from environment 
+    venv is python
+    terminal environment
+
+  use env variables before going live
+    settings.py
+    database variables should live in .env and have 
+      export <>
+  source .env vs loaddotenv()
+
+  OAUTH for Spotify 
+    Can create local user account on application that is tied to user spotify
+  [] Django OAuth Libary exists
+  

@@ -23,6 +23,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: Access the password from .env using os.environ!
 DB_PASSWORD = os.environ['DB_PASSWORD']
+# environment variables for DB
+#
+#
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,7 +79,8 @@ WSGI_APPLICATION = 'navel.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# Recommend environment variables in dotenv
+#   source env to load
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
