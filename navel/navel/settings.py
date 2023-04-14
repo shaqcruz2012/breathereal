@@ -6,6 +6,10 @@ Youve registered app update staticfiles_dirs to point to your static folder
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w+ed5imtv@c!0+nr*37ll27&uh-b!1_4@q=@pl*mnp&jcyn%j@'
+SECRET_KEY = os.environ['SECRET_KEY']
+
+# SECURITY WARNING: Access the password from .env using os.environ!
+DB_PASSWORD = os.environ['DB_PASSWORD']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -71,9 +78,13 @@ WSGI_APPLICATION = 'navel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         # postgres
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'server.db',
+        'USER' : 'shaqc',
+        'PASSWORD' : 'new_password',
+        'HOST' : 'localhost',
+        'PORT' : '5433'
     }
 }
 
@@ -113,9 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / "static"]
+STATICFILES_DIRS = [ BASE_DIR / "static",]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# When not using the default model we need to add this
+AUTH_USER_MODEL = 'app.CustomUser'

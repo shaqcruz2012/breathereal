@@ -1,12 +1,12 @@
 # SQL SCHEMA
 
-![drawSQL-breathereal-export-2023-04-10](https://user-images.githubusercontent.com/54126946/231185899-fdff007b-e9db-4717-aebc-acf76d58d2ae.png)
+![drawSQL-breathereal-export-2023-04-12](https://user-images.githubusercontent.com/54126946/231333390-cc2bd3d0-c7d9-4ce4-aea5-469452085e2a.png)
 
-# FIGMA WIREFRAME
+SC 4/11/2023 10:37 PM Updated SQL Schema, the duplicate User(user_id) changed into User(is_kanye_west). This includes Kanye into our user base and we can automate his posts 
 
-![image](https://user-images.githubusercontent.com/54126946/231214275-f0373ac5-91c1-4a13-b393-8a83f2df5fc1.png)
+#### FIGMA WIREFRAME
 
-[] Add Login
-  - Spotify Button
+![image](https://user-images.githubusercontent.com/54126946/231354547-c671d094-d3be-4d80-a2dc-65c1a83a902c.png)
 
-[] Add Profile
+
+
