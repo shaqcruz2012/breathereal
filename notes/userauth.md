@@ -21,6 +21,9 @@ Goal today is to do the following:
 - (if this line isn’t showing up check the correct python interpreter is being selected by vs code)
 - If everything is good you should be able to $ npm run build in the front end to have assets populate in django
 
+- Today I updated the models.py scrapping the CustomUser(AbstractUser) for App_User(AbstractUser) that Francisco has in W9D4 . 
+- I didn't need the Kanye field, instead I'll create a bot class  
+
 Serene Help:
   .env can look diff ways
     in .env each line, export <VARNAME>='thevalueofvar'

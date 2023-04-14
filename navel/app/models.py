@@ -10,13 +10,22 @@ from django.db import models
             Special Users => permission lvls
             KanyeBot that doesnt have useracct
 """
-class CustomUser(AbstractUser):
-    user_id = models.AutoField(primary_key=True)
-    is_kanye_west = models.BooleanField(default=False)
+
+class App_User(AbstractUser):
+    email = models.EmailField(blank=False, null = False, unique = True)
+    name = models.CharField(max_length = 255, null = False, blank = False)
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f"{self.name} | {self.email}"
+# class CustomUser(AbstractUser):
+    # user_id = models.AutoField(primary_key=True)
+    # is_kanye_west = models.BooleanField(default=False)
 
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(App_User, on_delete=models.CASCADE, null=True)
     # not required for user^
     # field (not required) bot
     
@@ -28,7 +37,7 @@ class Post(models.Model):
     # bot component sched tasks, once every 12 hours call API and post name Author=KanyeBotName
     # If KW 
     #   unit tests would create a user that might post KW
-    #   divorce backdoor 
+    #   divorce bots and user to avoid backdoor 
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.TextField()
@@ -53,10 +62,22 @@ class PostTrack(models.Model):
     class Meta:
         unique_together = (('post','track'),)
 
-# class Bot()
+class Bot:
+    def __init__(self):
+        # Constructor for Bot class
+        pass
+    def make_post(self, content, location):
+        # Logic for making a post
+        pass
 
-# class Child(Bot)
-    # inherits from Kanyre
+class Child(Bot):
+    def __init__(self):
+        # Constructor for Child class
+        super().__init__()  # Call the parent class constructor
+    def get_kanye_west_content(self):
+        # Logic for fetching content from kanyre.rest API
+        pass
+
 
 """
 If this all breaks from Week9-4 2:30

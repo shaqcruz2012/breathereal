@@ -31,12 +31,3 @@ git push origin PROJECT-00x
 On GH: Create Pull Request, Request Reviewers
  "just making sure I have it down, you create a branch and push the branch, then on GitHub create a pull request so you can merge?" Yes.
 
-Create Wireframe
-  - Use Figma or TL Draw
-  Homepage, user Login page, API calls
-  - Home has navbar, couple of columns
-  - Login has circle, input fields, submit
-  - API Call for Posts
-
-
-
