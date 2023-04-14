@@ -14,10 +14,11 @@ So far
 Goal today is to do the following:
 - Link views to models and httprequests
   Import from.models *modelname* as *whatever you want )*
-- $pip install django restframework
+- $pip install djangorestframework
 - Add the following import to views
-  from django.contrib.auth import authenticate,login,logout
-- from rest_framework.decorators import api_view 
+    from django.contrib.auth import authenticate,login,logout
+    from rest_framework.decorators import api_view
+    INSTALLED_APPS = ['rest_framework]
 - (if this line isn’t showing up check the correct python interpreter is being selected by vs code)
 - If everything is good you should be able to $ npm run build in the front end to have assets populate in django
 
