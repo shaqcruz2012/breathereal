@@ -31,7 +31,7 @@ git push origin PROJECT-00x
 On GH: Create Pull Request, Request Reviewers
  "just making sure I have it down, you create a branch and push the branch, then on GitHub create a pull request so you can merge?" Yes.
 
-Cold Start Commands:
+# Cold Start Commands:
 double split screen terminals
 
 venv terminal:
@@ -45,7 +45,9 @@ react terminal:
 
 postgresql terminal:
   cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  sudo service postgresql status
   sudo service postgresql start
+
 django terminal:
   cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
   source env/bin/activate

@@ -17,6 +17,7 @@ def user_sign_up(request):
     email = request.data['email']
     password = request.data['password']
     name = request.data['name']
+    # staff looks unneccesary? 
     super_user = False
     staff = False
     if 'super' in request.data:
