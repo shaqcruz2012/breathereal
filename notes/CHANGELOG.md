@@ -105,3 +105,5 @@ I want to modify this to search for a Track and returns all Track Objects matchi
 
 https://medium.com/@sedwardscode/creating-a-spotify-app-on-the-spotify-developer-page-16907b5872e8
 
+# SC 4/13/2023 11:53 AM
+Added PROJECT003 under userauth.md

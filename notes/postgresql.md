@@ -10,3 +10,12 @@ SC 4/11/2023 10:37 PM Updated SQL Schema, the duplicate User(user_id) changed in
 
 
 
+Create Wireframe
+  - Use Figma or TL Draw
+  Homepage, user Login page, API calls
+  - Home has navbar, couple of columns
+  - Login has circle, input fields, submit
+  - API Call for Posts
+
+
+

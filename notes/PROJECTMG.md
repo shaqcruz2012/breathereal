@@ -31,12 +31,31 @@ git push origin PROJECT-00x
 On GH: Create Pull Request, Request Reviewers
  "just making sure I have it down, you create a branch and push the branch, then on GitHub create a pull request so you can merge?" Yes.
 
-Create Wireframe
-  - Use Figma or TL Draw
-  Homepage, user Login page, API calls
-  - Home has navbar, couple of columns
-  - Login has circle, input fields, submit
-  - API Call for Posts
+# Cold Start Commands:
+double split screen terminals
 
+venv terminal:
+  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  source env/bin/activate
+  git status
 
+react terminal:
+  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal/frontend
+  npm run dev
 
+postgresql terminal:
+  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  sudo service postgresql status
+  sudo service postgresql start
+
+django terminal:
+  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  source env/bin/activate
+  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal/navel
+  python3 manage.py runserver
+
+Frontend:
+http://127.0.0.1:8000/
+
+Backend:
+http://127.0.0.1:8080/
