@@ -35,23 +35,23 @@ On GH: Create Pull Request, Request Reviewers
 double split screen terminals
 
 venv terminal:
-  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  cd /home/shaqc/programming/breathereal
   source env/bin/activate
   git status
 
 react terminal:
-  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal/frontend
+  cd /home/shaqc/programming/breathereal/frontend
   npm run dev
 
 postgresql terminal:
-  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  cd /home/shaqc/programming/breathereal
   sudo service postgresql status
   sudo service postgresql start
 
 django terminal:
-  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal
+  cd /home/shaqc/programming/breathereal
   source env/bin/activate
-  cd /home/shaqc/programming/tangoplatoon/curriculum/breathereal/navel
+  cd /home/shaqc/programming/breathereal/navel
   python3 manage.py runserver
 
 Frontend:

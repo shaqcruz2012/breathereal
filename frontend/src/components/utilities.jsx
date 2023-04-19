@@ -32,3 +32,15 @@ export const logOut = async(setUser) => {
         setUser(null)
     }
 }
+
+export const getTasks = async() => {
+    let response = await axios.get("/tasks/")
+    return response.data.tasks
+}
+
+export const createTask = async(title) => {
+    let response = await axios.post('/tasks/', {
+        'title' : title
+    })
+    return response.data.tasks
+}

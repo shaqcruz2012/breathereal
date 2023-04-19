@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { signUp } from "../utilities";
+import { signUp } from "./utilities";
 
 export const SignUp = () => {
   const [name, setName] = useState("");

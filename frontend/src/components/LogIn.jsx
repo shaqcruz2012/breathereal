@@ -1,6 +1,6 @@
 import {  useContext, useState } from "react";
-import { logIn } from "../utilities";
-import { UserContext } from "../App";
+import { logIn } from "./utilities";
+import { UserContext } from "./App";
 
 export const LogIn = () => {
   const [email, setEmail] = useState("");

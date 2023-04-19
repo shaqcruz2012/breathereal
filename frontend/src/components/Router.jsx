@@ -1,7 +1,9 @@
 import App from './App'
 import { createHashRouter, createBrowserRouter } from 'react-router-dom';
-import { SignUp } from './components/SignUp';
-import { LogIn } from './components/LogIn';
+import { SignUp } from './SignUp';
+import { LogIn } from './LogIn';
+import { Task } from './Tasks';
+import { getTasks } from './utilities';
 
 const Router = createHashRouter([{
     path: '/',
@@ -14,6 +16,11 @@ const Router = createHashRouter([{
         {
             path:"/login/",
             element: <LogIn />
+        },
+        {
+            path:"/tasks/",
+            element: <Task />,
+            loader: getTasks
         }
     ]
 }])
