@@ -43,6 +43,10 @@ react terminal:
   cd /home/shaqc/programming/breathereal/frontend
   npm run dev
 
+react watcher terminal:
+  cd /home/shaqc/programming/breathereal/frontend
+  npm run watch
+
 postgresql terminal:
   cd /home/shaqc/programming/breathereal
   sudo service postgresql status
@@ -59,3 +63,6 @@ http://127.0.0.1:8000/
 
 Backend:
 http://127.0.0.1:8080/
+
+SC 4/20/2023 8:32 PM
+Tomorrow will be better. Start again and figure out restful API https://youtu.be/6vBGHBmXKAw?t=5923. Solid day today.

@@ -36,7 +36,8 @@ def user_sign_up(request):
 
 @api_view(["POST"])
 def user_log_in(request):
-
+    print(dir(request))
+    print(request.data)
     email = request.data['email']
     password = request.data['password']
     user = authenticate(username = email , password = password)
@@ -54,7 +55,8 @@ def user_log_in(request):
 
 @api_view(["GET"])
 def curr_user(request):
-
+    print(dir(request))
+    print(request.data)
     if request.user.is_authenticated:
         #                    format       query                     options
         user_info = serialize("json",  [request.user], fields = ['name', 'email'])
@@ -66,6 +68,8 @@ def curr_user(request):
     
 @api_view(['POST'])
 def user_log_out(request):
+    print(dir(request))
+    print(request.data)
     try:
         # Removes SessionID
         logout(request)
@@ -76,6 +80,8 @@ def user_log_out(request):
     
     
 def send_the_index(request):
+    print(dir(request))
+    print(request.data)
     # returns the index from React Project
     the_index = open('static/index.html')
     return HttpResponse(the_index)
