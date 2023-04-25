@@ -56,7 +56,7 @@ django terminal:
   cd /home/shaqc/programming/breathereal
   source env/bin/activate
   cd /home/shaqc/programming/breathereal/navel
-  python3 manage.py runserver
+  python3 manage.py runserver 5174
 
 Frontend:
 http://127.0.0.1:8000/
