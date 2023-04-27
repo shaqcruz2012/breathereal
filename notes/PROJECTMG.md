@@ -66,3 +66,6 @@ http://127.0.0.1:8080/
 
 SC 4/20/2023 8:32 PM
 Tomorrow will be better. Start again and figure out restful API https://youtu.be/6vBGHBmXKAw?t=5923. Solid day today.
+
+SC 4/27/2023 8:04 AM
+You have 24 hours to integrate 2 apis and get the front end to work with the back end. You can start a brand new project if you want as well as do a new user auth set up

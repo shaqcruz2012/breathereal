@@ -150,3 +150,4 @@ AUTH_USER_MODEL = 'app.App_User'
 
 
 CORS_ORIGIN_WHITELIST = [    'http://localhost:5174',]
+        # ./?>
