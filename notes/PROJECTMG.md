@@ -56,6 +56,8 @@ django terminal:
   cd /home/shaqc/programming/breathereal
   source env/bin/activate
   cd /home/shaqc/programming/breathereal/navel
+  python3 manage.py runserver
+
   python3 manage.py runserver 5174
 
 Frontend:
@@ -69,3 +71,13 @@ Tomorrow will be better. Start again and figure out restful API https://youtu.be
 
 SC 4/27/2023 8:04 AM
 You have 24 hours to integrate 2 apis and get the front end to work with the back end. You can start a brand new project if you want as well as do a new user auth set up
+
+[] Set up Spotify Search
+[] Review DJANGO API connection
+
+SC 4/27/2023 8:21 AM
+install djangorestframework
+install corsheaders - allows api to be accessed
+install django-cors-headers
+
+Finish the lesson. Use admin UI to add a user?

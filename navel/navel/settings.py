@@ -65,6 +65,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']}
+CORS_ORIGIN_ALLOW_ALL = True
+
 ROOT_URLCONF = 'navel.urls'
 
 TEMPLATES = [

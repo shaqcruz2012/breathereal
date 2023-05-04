@@ -6,14 +6,36 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
-from .models import App_User 
+# from .models import App_User, serializer
 from django.core.serializers import serialize
+from rest_framework.response import Response
+from rest_framework.decorators import APIView
+from . serializer import *
 
+# from rest_framework import serializers
+# from .models import *
+# from django.core.serializers import serialize
+#
 
 import json
 
+class ReactView(APIView):
+    def get(self, request):
+        output = [{"email": output.email,
+                "name":output.name}
+                for output in React.objects.all()]
+        return Response(output)
+    def post(self, request):
+        serializer = ReactSerializer(data = request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response(serializer.data)
+    # we have saved the data by passing the data to react serializer method.
+    # we have to return the data to the user.
+
 @api_view(["POST"])
 def user_sign_up(request):
+    print(request.data)
     email = request.data['email']
     password = request.data['password']
     name = request.data['name']
@@ -80,8 +102,8 @@ def user_log_out(request):
     
     
 def send_the_index(request):
-    print(dir(request))
-    print(request.data)
+    # print(dir(request))
+    # print(request.data)
     # returns the index from React Project
     the_index = open('static/index.html')
     return HttpResponse(the_index)

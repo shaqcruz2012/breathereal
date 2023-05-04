@@ -4,6 +4,7 @@ import { SignUp } from './SignUp';
 import { LogIn } from './LogIn';
 import { Task } from './Tasks';
 import { getTasks } from './utilities';
+import { Search } from './Search';
 
 const Router = createHashRouter([{
     path: '/',
@@ -20,6 +21,11 @@ const Router = createHashRouter([{
         {
             path:"/tasks/",
             element: <Task />,
+            loader: getTasks
+        },
+        {
+            path:"/search/",
+            element: <Search />,
             loader: getTasks
         }
     ]

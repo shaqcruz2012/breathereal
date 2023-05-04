@@ -7,6 +7,8 @@ import { getToken } from "./CsrfToken";
 import { Outlet } from "react-router-dom";
 import NavBar  from "./NavBar";
 
+
+
 export const UserContext = createContext(null)
 
 function App() {
