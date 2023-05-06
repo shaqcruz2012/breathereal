@@ -11,7 +11,7 @@ from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
 from . serializer import *
-
+from app.models import Post
 # from rest_framework import serializers
 # from .models import *
 # from django.core.serializers import serialize
@@ -35,7 +35,6 @@ class ReactView(APIView):
 
 @api_view(["POST"])
 def user_sign_up(request):
-    print(request.data)
     email = request.data['email']
     password = request.data['password']
     name = request.data['name']
@@ -58,8 +57,6 @@ def user_sign_up(request):
 
 @api_view(["POST"])
 def user_log_in(request):
-    print(dir(request))
-    print(request.data)
     email = request.data['email']
     password = request.data['password']
     user = authenticate(username = email , password = password)
@@ -67,7 +64,6 @@ def user_log_in(request):
         try:
             # Creates SessionID
             login(request._request, user)
-            print(user)
             return JsonResponse({'email': user.email, 'name':user.name})
         except Exception as e:
             print(e)
@@ -77,8 +73,6 @@ def user_log_in(request):
 
 @api_view(["GET"])
 def curr_user(request):
-    print(dir(request))
-    print(request.data)
     if request.user.is_authenticated:
         #                    format       query                     options
         user_info = serialize("json",  [request.user], fields = ['name', 'email'])
@@ -90,8 +84,6 @@ def curr_user(request):
     
 @api_view(['POST'])
 def user_log_out(request):
-    print(dir(request))
-    print(request.data)
     try:
         # Removes SessionID
         logout(request)
@@ -102,8 +94,13 @@ def user_log_out(request):
     
     
 def send_the_index(request):
-    # print(dir(request))
-    # print(request.data)
     # returns the index from React Project
     the_index = open('static/index.html')
     return HttpResponse(the_index)
+
+@api_view(['POST'])
+def posts(request):
+    content = request.data['content']
+    new_post = Post.objects.create(content = content, user = request.user, location = "Chicago, IL")
+    new_post.save() 
+    return JsonResponse({"success":True})

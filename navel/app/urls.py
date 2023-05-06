@@ -4,10 +4,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('signup/', views.user_sign_up, name='signup'),
-    path('login/', views.user_log_in, name= 'signin'),
-    path('search/', views.user_log_in, name= 'search'),
-    path('curruser/', views.curr_user, name= 'curruser'),
-    path('logout/', views.user_log_out, name= 'signout'),
+    path('api/v1/user/signup/', views.user_sign_up, name='signup'),
+    path('api/v1/user/login/', views.user_log_in, name= 'signin'),
+    path('api/v1/search/', views.user_log_in, name= 'search'),
+    path('api/v1/user/curruser/', views.curr_user, name= 'curruser'),
+    path('api/v1/user/logout/', views.user_log_out, name= 'signout'),
+    path('api/v1/posts/', views.posts, name= 'posts'),
     path('', views.send_the_index, name='index')
 ]

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+
 export const signUp = async(name, email, password) => {
-    let response = await axios.post('/user/signup/' , {
+    let response = await axios.post('api/v1/user/signup/' , {
         'name': name,
         'email' : email,
         'password' : password
@@ -12,7 +13,7 @@ export const signUp = async(name, email, password) => {
 
 
 export const logIn = async(email, password, setUser) => {
-    let response = await axios.post('/user/login/', {
+    let response = await axios.post('api/v1/user/login/', {
         'email' : email,
         'password' : password
     })
@@ -21,26 +22,29 @@ export const logIn = async(email, password, setUser) => {
 }
 
 export const currUser = async() =>{
-    let response = await axios.get('/user/curruser/')
+    let response = await axios.get('api/v1/user/curruser/')
     console.log(response.data)
     return response.data
 }
 
-export const logOut = async(setUser) => {
-    let response = await axios.post('/user/logout/')
+export const logOut = async(setUser, navigate) => {
+    let response = await axios.post('api/v1/user/logout/')
     if(response.data.logout){
         setUser(null)
+        navigate('/')
+
     }
 }
 
-export const getTasks = async() => {
-    let response = await axios.get("/tasks/")
-    return response.data.tasks
+export const getPosts = async() => {
+    let response = await axios.get("api/v1/posts/")
+    return response.data.posts
 }
 
-export const createTask = async(title) => {
-    let response = await axios.post('/tasks/', {
-        'title' : title
+export const createPost = async(content) => {
+    let response = await axios.post('api/v1/posts/', {
+        'content' : content
     })
-    return response.data.tasks
+    return response.data.success
 }
+

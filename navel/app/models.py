@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import BaseUserManager
 
 """_
         AUTH_USER_MODEL = 'app.App_User'
@@ -11,12 +12,42 @@ from django.db import models
             KanyeBot that doesnt have useracct
 """
 
+class UserManager(BaseUserManager):
+    use_in_migrations = True
+    def _create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('Users require an email field')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email, password, **extra_fields)
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        return self._create_user(email, password, **extra_fields)
+
+# Before 5/4/23 4:28 PM
+
 class App_User(AbstractUser):
+    
     email = models.EmailField(blank=False, null = False, unique = True)
     name = models.CharField(max_length = 255, null = False, blank = False)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-
+    objects = UserManager()
+    def save(self, *args, **kwargs):
+                self.full_clean()
+                return super().save(*args, **kwargs)
+    
     def __str__(self):
         return f"{self.name} | {self.email}"
 
@@ -24,18 +55,6 @@ class App_User(AbstractUser):
 class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(App_User, on_delete=models.CASCADE, null=True)
-    # not required for user^
-    # field (not required) bot
-    
-    # if user display name user, n 
-    # if user is empty, have system check bot field
-    # elif customvalidation one of these two must exist
-    # bot hard coded into app can make posts using API
-    # users can do the same
-    # bot component sched tasks, once every 12 hours call API and post name Author=KanyeBotName
-    # If KW 
-    #   unit tests would create a user that might post KW
-    #   divorce bots and user to avoid backdoor 
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.TextField()

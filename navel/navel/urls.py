@@ -11,7 +11,7 @@ def send_the_index(request):
     return HttpResponse(index)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user/', include('app.urls')),
+    path('api/v1/admin/', admin.site.urls),
+    path('', include('app.urls')),
     path('', send_the_index, name="anything") 
 ]

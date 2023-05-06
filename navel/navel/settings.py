@@ -97,7 +97,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # postgres
-        'NAME': 'server.db',
+        'NAME': 'breathereal',
         'USER' : 'shaqc',
         'PASSWORD' : 'new_password',
         'HOST' : 'localhost',
@@ -150,6 +150,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # When not using the default model we need to add this
 AUTH_USER_MODEL = 'app.App_User'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+
 
 
 CORS_ORIGIN_WHITELIST = [    'http://localhost:5174',]
