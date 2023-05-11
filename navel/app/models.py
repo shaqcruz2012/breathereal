@@ -36,11 +36,16 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 # Before 5/4/23 4:28 PM
+class Location(models.Model):
+    id = models.AutoField(primary_key=True)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
 
 class App_User(AbstractUser):
     
     email = models.EmailField(blank=False, null = False, unique = True)
     name = models.CharField(max_length = 255, null = False, blank = False)
+    location = models.ForeignKey(Location, on_delete=models.PROTECT, null=True)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     objects = UserManager()
@@ -53,7 +58,7 @@ class App_User(AbstractUser):
 
 
 class Post(models.Model):
-    post_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(App_User, on_delete=models.CASCADE, null=True)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -63,7 +68,7 @@ class Track(models.Model):
     track_id = models.AutoField(primary_key=True)
     track_name = models.CharField(max_length=255)
     artist_name = models.CharField(max_length=255)
-    album = models.CharField(max_length=255)
+    # album = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
 
 class PostTrack(models.Model):
@@ -109,3 +114,4 @@ class App_User(AbstractUser):
         return f"{self.name} | {self.email}"
 
 """
+

@@ -1,6 +1,6 @@
 import {  useContext, useState } from "react";
-import { logIn } from "./utilities";
-import { UserContext } from "./App";
+import { logIn } from "../utilities";
+import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 export const LogIn = () => {

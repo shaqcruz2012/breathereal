@@ -12,6 +12,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import APIView
 from . serializer import *
 from app.models import Post
+from django.forms.models import model_to_dict
+from app.util.spotifyHelpers import getToken, searchTracks
 # from rest_framework import serializers
 # from .models import *
 # from django.core.serializers import serialize
@@ -35,9 +37,12 @@ class ReactView(APIView):
 
 @api_view(["POST"])
 def user_sign_up(request):
+    print(request.data)
     email = request.data['email']
     password = request.data['password']
     name = request.data['name']
+    state = request.data['state']
+    city = request.data['city']
     # staff looks unneccesary? 
     super_user = False
     staff = False
@@ -47,7 +52,16 @@ def user_sign_up(request):
         staff = request.data['staff']
     try:
         # creates new user
-        new_user = App_User.objects.create_user(username = email, email = email, name = name, password = password, is_superuser = super_user, is_staff = staff)
+        # createOrGetLocation
+        location, created = Location.objects.get_or_create(state = state, city = city)
+        new_user = App_User.objects.create_user(
+            username = email, 
+            email = email, 
+            name = name, 
+            password = password, 
+            is_superuser = super_user, 
+            is_staff = staff,
+            location = location )
         new_user.save()
         return JsonResponse({"success":True})
     except Exception as e:
@@ -98,9 +112,24 @@ def send_the_index(request):
     the_index = open('static/index.html')
     return HttpResponse(the_index)
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def posts(request):
-    content = request.data['content']
-    new_post = Post.objects.create(content = content, user = request.user, location = "Chicago, IL")
-    new_post.save() 
-    return JsonResponse({"success":True})
+    if request.method == 'POST':
+        content = request.data['content']
+        new_post = Post.objects.create(content = content, user = request.user, location = "Chicago, IL")
+        new_post.save() 
+        return JsonResponse({"success":True})
+    elif request.method == 'GET':
+        posts = Post.objects.all()
+        post_data = [{'id': post.id, 'content': post.content, 'location': model_to_dict(post.user.location) if post.user.location else None } for post in posts]
+        return JsonResponse({'posts': post_data})
+
+@api_view(['GET'])
+def getTracks(request):
+    token = getToken()
+    searchInput = request.GET.get('search')
+    tracks = searchTracks(token, searchInput)
+    
+    return JsonResponse(tracks, safe=False)
+
+

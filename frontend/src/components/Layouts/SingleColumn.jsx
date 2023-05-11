@@ -4,7 +4,7 @@ export default function SingleColumn({children}) {
     const [topComponent, bottomComponent] = children;
 
     return (
-      <Container fluid>
+      <Container fluid className="justify-content-center">
       <Row>
         <Col className="px-0">
           {topComponent}

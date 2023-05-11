@@ -1,7 +1,17 @@
 import { defineConfig } from "vite";
 import react from '@vitejs/plugin-react'
+import dotenv from 'dotenv'
 
-// from RW10D4 24:51
+/*
+So here's the issue:
+I'm trying to use dotenv to hide the IPGEOLOCATION secret keys, but it's not being called in my utilities.jsx. Thought
+
+*/
+
+// dotenv.config({ path: '../../.env'})
+dotenv.config({ path: './.env' })
+
+
 export default defineConfig({
   // vite uses this is a prefix for href and src URLs
   // 
@@ -17,13 +27,3 @@ export default defineConfig({
   },
   plugins: [react()]
 })
-
-/* Default load SC 4/5/2023 7:37 PM
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
-*/

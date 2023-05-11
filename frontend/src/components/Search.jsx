@@ -1,64 +1,56 @@
-// import '.App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, InputGroup, FormControl, Button, Row, Card} from 'react-bootstrap'
+import { Container, InputGroup, FormControl, Button, Row, Form, Card, Stack} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form';
+import SearchCard from './SearchCard'
+import { getSpotifyTracks } from './utilities'
+import BigSearchCard from './BigSearchCard'
 // import { getArtists } from './utilities'
 
-const CLIENT_ID = "1abc5eab32db46f4ae799d39abdf79ec"
-const CLIENT_SECRET = "bcf425df50594439ad1ebc2c13603752"
 
-export const Search = () => {
+export default function Search ({setSelectedMusic, selectedMusic}) {
   const [searchInput, setSearchInput] = useState('')
   const [accessToken, setAccessToken] = useState('') // [accessToken, setAccessToken] = useState('')
   // not in tutorial, but I think we need this
   const [searchResults, setSearchResults] = useState([])
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  
+  async function handleSpotifyAPI(data) {
+    const tracks = await getSpotifyTracks(data);    
+    setSearchResults(tracks);
+  }
 
-
-  useEffect(() => {
-    // API Access Token
-    var authParameters = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    }
-    fetch('https://accounts.spotify.com/api/token', authParameters)
-      .then(result => result.json()) 
-      .then(data => console.log(data))
-
-  }, [searchInput])
 
   return (
     <div className='Searcher'>
-      <Container>
-        <InputGroup>
-          <FormControl
-            placeholder="Search for an Artist"
-            type="input"
-            onKeyPress={event => {
-              if (event.key === "Enter") {
-                console.log("Enter key pressed")
-              }
-            }}
-            onChange={event => setSearchInput(event.target.value)}
-          />
-          <Button onClick={ event => console.log("Clicked Button")}>
-            Search
-          </Button>
-        </InputGroup>
-      </Container>
+      <Stack gap={4}>
+
+        <Form onSubmit={handleSubmit(handleSpotifyAPI)}>
+          <Form.Group>
+            <Form.Label className={'fs-4'}>Search for a Track</Form.Label>
+            <InputGroup>
+            <Form.Control
+              placeholder="Search for an Track"
+              type="text"
+              {...register("Search Input")}
+            />
+            <Button type="submit">
+              Search
+            </Button>
+            </InputGroup>
+          </Form.Group>
+        </Form>
       
-      <Container>
-        <Row className='mx-2 row row-cols-4'>
-          <Card>
-            <Card.Img src="#" />
-            <Card.Body>
-              <Card.Title>Album Name Here</Card.Title>
-            </Card.Body> 
-          </Card>
-        </Row>
-      </Container>
+        <div>
+          <h3 className={'fs-4'}>Post Song</h3>
+          {searchResults.length > 0 && selectedMusic === null && 
+        searchResults.map((track) => <SearchCard setSelectedMusic={setSelectedMusic} {...track}/>)}
+        {selectedMusic && <BigSearchCard setSelectedMusic={setSelectedMusic} selectedMusic={selectedMusic} />}</div>
+            {searchResults.length === 0 && selectedMusic === null && 
+            <div style={{height:'300px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <p>You need to search for a song</p>
+            </div>}
+      </Stack>
     </div>
   )
 }

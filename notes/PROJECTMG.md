@@ -81,3 +81,11 @@ install corsheaders - allows api to be accessed
 install django-cors-headers
 
 Finish the lesson. Use admin UI to add a user?
+
+Get Login page to fit into a component to fit inside its container and look nice
+Responsive mobile layout design
+
+API url:
+https://api.ipgeolocation.io/ipgeo?apiKey=f90dbca0b5e647bea26eddee90017320
+
+Location at Signup
