@@ -7,25 +7,35 @@ import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import Search from './Search';
 
-
 export default function CreatePost() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, getValues, formState: { errors } } = useForm();
   const [ selectedMusic, setSelectedMusic] = useState(null);
+
   function onSubmit(data) {
-    data[selectedMusic] = selectedMusic;
+    data['selectedMusic'] = selectedMusic;
     const response = createPost(data['Post Content'], data['selectedMusic'])
     if (response) {window.location.reload()};
   }
+  
     return (
         <Stack gap={4}>
             <Search setSelectedMusic={setSelectedMusic} selectedMusic={selectedMusic} />
+            
             <Form onSubmit={handleSubmit(onSubmit)} >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
               {/* future: replace useState with nested forms */}
-              <Form.Label className={'fs-4'}>Post Content</Form.Label> 
-                <Form.Control type="text" placeholder="What's on your mind?" {...register("Post Content")}/>
+                <Form.Label className={'fs-4'}>Post Content</Form.Label> 
+                <Form.Control 
+                    type="text" 
+                    placeholder="What's on your mind?" 
+                    {...register("Post Content")}
+                />
               </Form.Group>
-              <Button variant="primary" type="submit" >
+              {/* todo: disabled={selectedMusic ? false : true}  */}
+              <Button 
+                disabled={selectedMusic ? false : true}
+                variant="primary" 
+                type="submit"  >
                 Submit
               </Button>
             </Form>

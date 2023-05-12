@@ -11,7 +11,7 @@ from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
 from . serializer import *
-from app.models import Post
+from app.models import Post, Track
 from django.forms.models import model_to_dict
 from app.util.spotifyHelpers import getToken, searchTracks
 # from rest_framework import serializers
@@ -99,13 +99,26 @@ def curr_user(request):
 @api_view(['POST'])
 def user_log_out(request):
     try:
+        print(request)
         # Removes SessionID
         logout(request)
         return JsonResponse({"logout":True})
     except Exception as e:
         print(e)
         return JsonResponse({"logout":False})
-    
+
+@api_view(['POST'])
+def user_delete_account(request):
+    try:
+        if request.user.is_authenticated:
+            request.user.delete()
+            logout(request)
+            return JsonResponse({"delete":True})
+        else:
+            return JsonResponse({"delete":False, "error":"user not logged in"})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"delete":False})    
     
 def send_the_index(request):
     # returns the index from React Project
@@ -116,12 +129,30 @@ def send_the_index(request):
 def posts(request):
     if request.method == 'POST':
         content = request.data['content']
-        new_post = Post.objects.create(content = content, user = request.user, location = "Chicago, IL")
+        selectedMusic = request.data['selectedMusic']
+        print(selectedMusic)
+        track, created = Track.objects.get_or_create(track_name = selectedMusic['name'], artist_name = selectedMusic['artist'], imgurl = selectedMusic['image'])
+
+        new_post = Post.objects.create(
+            content = content, 
+            user = request.user, 
+            location = request.user.location , 
+            track = track)
+
         new_post.save() 
         return JsonResponse({"success":True})
     elif request.method == 'GET':
         posts = Post.objects.all()
-        post_data = [{'id': post.id, 'content': post.content, 'location': model_to_dict(post.user.location) if post.user.location else None } for post in posts]
+        # [] cleanup: function or explicit for-loops
+        post_data = [{
+            'id': post.id, 
+            'user': post.user.name,
+            'content': post.content, 
+            'location': model_to_dict(post.user.location) if post.user.location else None, 
+            'track' : model_to_dict(post.track)
+            } for post in posts]  
+
+
         return JsonResponse({'posts': post_data})
 
 @api_view(['GET'])
@@ -131,5 +162,7 @@ def getTracks(request):
     tracks = searchTracks(token, searchInput)
     
     return JsonResponse(tracks, safe=False)
+
+
 
 

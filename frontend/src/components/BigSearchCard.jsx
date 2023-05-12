@@ -1,8 +1,8 @@
 // results show card else show empty div with constraint 
 import { Card, Container, Image, Button, Row, Col, Stack } from 'react-bootstrap';
 
-export default function BigSearchCard({selectedMusic, setSelectedMusic}) {
-  const {artist, image, name}  = selectedMusic 
+export default function BigSearchCard({selectedMusic}) {
+  const {artist, image, name}  = selectedMusic; 
   
   return (
     <Card className={'w-100'}>

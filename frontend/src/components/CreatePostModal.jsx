@@ -11,17 +11,18 @@ export default function CreatePostModal() {
 
 return(
   <>
-  <Modal show={show} onHide={handleClose} size='lg' >
-        <Modal.Header closeButton>
-          <Modal.Title>Create a Breathereal</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <CreatePost handleClose = {handleClose} namething = {"example"} />
-        </Modal.Body>
-      </Modal>
-      <Button variant="primary" onClick={handleShow}>
+    <Modal show={show} onHide={handleClose} size='lg' >
+      <Modal.Header closeButton>
+        <Modal.Title>Create a Breathereal</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <CreatePost handleClose = {handleClose} />
+      </Modal.Body>
+    </Modal>
+
+    <Button variant="primary" onClick={handleShow}>
       Create Post
-      </Button>
-      </>
+    </Button>
+  </>
 )
 }

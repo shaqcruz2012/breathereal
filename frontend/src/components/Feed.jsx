@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Stack } from 'react-bootstrap';
 import { getPosts } from './utilities';
 import UserPost from './UserPost';
+import BigSearchCard from './BigSearchCard';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -17,12 +18,10 @@ export default function Feed() {
   }, []);
 
   return (
-    <Container className='d-flex justify-content-center'>
-      <div className='d-flex flex-column justify-content-center'>
-        {posts.map((post) => (
-          <UserPost {...post} />
-        ))}
-      </div>
-    </Container>
+    <Stack className='align-items-center' gap={2}>
+      {posts.map((post) => (
+        <UserPost {...post} />
+      ))}
+    </Stack>
   );
 }

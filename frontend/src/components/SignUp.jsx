@@ -22,8 +22,8 @@ export const SignUp = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         const {state, city} = await getLocation();
-        signUp(name, email, password, state, city);
-        logIn(email, password, setUser);
+        const signUpResponse = await signUp(name, email, password, state, city)
+        const signInResponse = await logIn(email, password, setUser);
         navigate('/feed/');
       }}
       style={{ display: "flex", flexDirection: "column" }}

@@ -16,8 +16,11 @@ const NavBar = ({user, setUser})=> {
                 <Nav.Link as={Link} to="/"> Home</Nav.Link>
                 <Nav.Link as={Link} to="/feed/">View Feed</Nav.Link>
                 <CreatePostModal /> 
-                {user ? 
-                <Button variant="primary" onClick={()=>logOut(setUser, navigate)}>LOG OUT</Button> 
+                {user ?
+                    <>
+                        <Nav.Item> <Link to="/profile/">Profile</Link></Nav.Item> 
+                        <Button variant="primary" onClick={()=>logOut(setUser, navigate)}>LOG OUT</Button>
+                    </> 
                     : <Nav.Item> <Link to="/login/">Sign In</Link></Nav.Item>
                     } 
                 </Nav>

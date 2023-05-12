@@ -37,6 +37,12 @@ export const logOut = async(setUser, navigate) => {
     }
 }
 
+export const deleteAccount = async () => {
+    let response = await axios.delete('api/v1/user/delete/')
+    if (response.data.delete){
+        return true
+    }
+}
 export const getPosts = async() => {
     let response = await axios.get("api/v1/posts/")
     console.log(response.data.posts)

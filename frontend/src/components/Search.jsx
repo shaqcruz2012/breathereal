@@ -15,6 +15,7 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
   const [searchResults, setSearchResults] = useState([])
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   
+  
   async function handleSpotifyAPI(data) {
     const tracks = await getSpotifyTracks(data);    
     setSearchResults(tracks);
@@ -24,7 +25,6 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
   return (
     <div className='Searcher'>
       <Stack gap={4}>
-
         <Form onSubmit={handleSubmit(handleSpotifyAPI)}>
           <Form.Group>
             <Form.Label className={'fs-4'}>Search for a Track</Form.Label>
@@ -43,9 +43,16 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
       
         <div>
           <h3 className={'fs-4'}>Post Song</h3>
-          {searchResults.length > 0 && selectedMusic === null && 
-        searchResults.map((track) => <SearchCard setSelectedMusic={setSelectedMusic} {...track}/>)}
-        {selectedMusic && <BigSearchCard setSelectedMusic={setSelectedMusic} selectedMusic={selectedMusic} />}</div>
+          {searchResults.length > 0 && 
+            selectedMusic === null && 
+            searchResults.map((track) => <SearchCard setSelectedMusic={setSelectedMusic} {...track}/>
+            )}
+
+          {selectedMusic && 
+            <BigSearchCard 
+              setSelectedMusic={setSelectedMusic} 
+              selectedMusic={selectedMusic} />}
+        </div>
             {searchResults.length === 0 && selectedMusic === null && 
             <div style={{height:'300px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
               <p>You need to search for a song</p>

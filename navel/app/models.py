@@ -61,15 +61,16 @@ class Post(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(App_User, on_delete=models.CASCADE, null=True)
     content = models.TextField()
+    track = models.ForeignKey('Track', on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.TextField()
 
 class Track(models.Model):
-    track_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     track_name = models.CharField(max_length=255)
     artist_name = models.CharField(max_length=255)
     # album = models.CharField(max_length=255)
-    url = models.CharField(max_length=255)
+    imgurl = models.CharField(max_length=255)
 
 class PostTrack(models.Model):
     """
