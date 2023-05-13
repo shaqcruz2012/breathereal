@@ -113,11 +113,14 @@ def user_delete_account(request):
         if request.user.is_authenticated:
             request.user.delete()
             logout(request)
+            print("user deleted")
             return JsonResponse({"delete":True})
         else:
+            print("user not authenticated")
             return JsonResponse({"delete":False, "error":"user not logged in"})
     except Exception as e:
         print(e)
+        print("user not deleted")
         return JsonResponse({"delete":False})    
     
 def send_the_index(request):
@@ -163,6 +166,21 @@ def getTracks(request):
     
     return JsonResponse(tracks, safe=False)
 
-
+@api_view(['PUT'])
+def update_post_content(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+        if request.user == post.user:
+            new_content = request.data.get('content')
+            post.content = new_content
+            post.save()
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, "error": "User not authorized to update this post."})
+    except Post.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Post not found."})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
 
 

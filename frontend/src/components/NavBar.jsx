@@ -14,14 +14,16 @@ const NavBar = ({user, setUser})=> {
             <Navbar.Brand href="/">BreatheReal</Navbar.Brand>
                 <Nav className="ml-auto">
                 <Nav.Link as={Link} to="/"> Home</Nav.Link>
-                <Nav.Link as={Link} to="/feed/">View Feed</Nav.Link>
+                <Nav.Link as={Link} to="/feed/">Feed</Nav.Link>
                 <CreatePostModal /> 
                 {user ?
-                    <>
-                        <Nav.Item> <Link to="/profile/">Profile</Link></Nav.Item> 
-                        <Button variant="primary" onClick={()=>logOut(setUser, navigate)}>LOG OUT</Button>
+                    <>  
+                        
+                        <Nav.Link as={Link} to="/profile/">{user && user.name}</Nav.Link>
+                        <Nav.Link as={Link} to="/" onClick={() => logOut(setUser, navigate)} > LOG OUT </Nav.Link> 
+                        {/* <Button variant="primary" onClick={()=>logOut(setUser, navigate)}>LOG OUT</Button> */}
                     </> 
-                    : <Nav.Item> <Link to="/login/">Sign In</Link></Nav.Item>
+                    : <Nav.Link as={Link} to="/login/">SIGN IN</Nav.Link>
                     } 
                 </Nav>
 

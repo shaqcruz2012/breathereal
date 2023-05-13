@@ -12,5 +12,7 @@ urlpatterns = [
     path('api/v1/user/delete/', views.user_delete_account, name= 'delete'),
     path('api/v1/posts/', views.posts, name= 'posts'),
     path('api/v1/spotify/tracks/', views.getTracks, name= 'gettracks'),
-    path('', views.send_the_index, name='index')
+    path('', views.send_the_index, name='index'),
+    path('api/v1/posts/<int:post_id>/', views.update_post_content, name='update_post_content'),
+
 ]

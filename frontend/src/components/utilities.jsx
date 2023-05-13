@@ -38,7 +38,7 @@ export const logOut = async(setUser, navigate) => {
 }
 
 export const deleteAccount = async () => {
-    let response = await axios.delete('api/v1/user/delete/')
+    let response = await axios.post('api/v1/user/delete/')
     if (response.data.delete){
         return true
     }
@@ -114,4 +114,15 @@ export const getSpotifyTracks = async(data) => {
     const response = await axios.get('api/v1/spotify/tracks/', {params:queryParams})
     // const response = await axios.get(`api/v1/spotify/tracks/?search=${data['SomethingTest']}`);
     return response.data.tracks.items
+}
+
+export const postContentUpdate = async(content, id) => {
+    console.log('content:',content)
+    console.log('id:',id)
+    let response = await axios.put(`api/v1/posts/${id}/`, {
+        'content' : content
+    })
+    console.log('response:',response)
+    // SC 5/12/2023 8:07 PM okay found the problem user not able to update post because it needs to be logged in as that user
+    return response.data.success
 }
