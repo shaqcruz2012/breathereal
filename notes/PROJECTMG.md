@@ -39,9 +39,10 @@ venv terminal:
   source env/bin/activate
   git status
 
-react terminal:
+
+react watcher terminal:
   cd /home/shaqc/programming/breathereal/frontend
-  npm run dev
+  npm run watch
 
 postgresql terminal:
   cd /home/shaqc/programming/breathereal
@@ -54,8 +55,34 @@ django terminal:
   cd /home/shaqc/programming/breathereal/navel
   python3 manage.py runserver
 
+  python3 manage.py runserver 5174
+
 Frontend:
 http://127.0.0.1:8000/
 
 Backend:
 http://127.0.0.1:8080/
+
+SC 4/20/2023 8:32 PM
+Tomorrow will be better. Start again and figure out restful API https://youtu.be/6vBGHBmXKAw?t=5923. Solid day today.
+
+SC 4/27/2023 8:04 AM
+You have 24 hours to integrate 2 apis and get the front end to work with the back end. You can start a brand new project if you want as well as do a new user auth set up
+
+[] Set up Spotify Search
+[] Review DJANGO API connection
+
+SC 4/27/2023 8:21 AM
+install djangorestframework
+install corsheaders - allows api to be accessed
+install django-cors-headers
+
+Finish the lesson. Use admin UI to add a user?
+
+Get Login page to fit into a component to fit inside its container and look nice
+Responsive mobile layout design
+
+API url:
+https://api.ipgeolocation.io/ipgeo?apiKey=f90dbca0b5e647bea26eddee90017320
+
+Location at Signup

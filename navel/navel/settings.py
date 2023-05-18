@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'app'
     
 ]
@@ -56,12 +57,16 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']}
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'navel.urls'
 
@@ -92,7 +97,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         # postgres
-        'NAME': 'server.db',
+        'NAME': 'breathereal',
         'USER' : 'shaqc',
         'PASSWORD' : 'new_password',
         'HOST' : 'localhost',
@@ -145,3 +150,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # When not using the default model we need to add this
 AUTH_USER_MODEL = 'app.App_User'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+
+
+
+CORS_ORIGIN_WHITELIST = [    'http://localhost:5174',]
+        # ./?>

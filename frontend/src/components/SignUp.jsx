@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
-import { signUp } from "./utilities";
+import { useEffect, useState, useContext } from "react";
+import { logIn, signUp } from "./utilities";
+import { getLocation } from "./utilities";
+import { UserContext } from "./App.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {setUser} = useContext(UserContext)
+  const navigate = useNavigate()
+  
 
   //   useEffect(()=> {
   //     console.log(name, email, password)
@@ -12,13 +19,13 @@ export const SignUp = () => {
 
   return (
     <form
-      onSubmit={(e) => [
-        e.preventDefault(),
-        signUp(name, email, password),
-        setEmail(""),
-        setPassword(""),
-        setName(""),
-      ]}
+      onSubmit={async (e) => {
+        e.preventDefault();
+        const {state, city} = await getLocation();
+        const signUpResponse = await signUp(name, email, password, state, city)
+        const signInResponse = await logIn(email, password, setUser);
+        navigate('/feed/');
+      }}
       style={{ display: "flex", flexDirection: "column" }}
     >
       <h3>Sign Up</h3>
