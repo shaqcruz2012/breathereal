@@ -39,9 +39,6 @@ venv terminal:
   source env/bin/activate
   git status
 
-react terminal:
-  cd /home/shaqc/programming/breathereal/frontend
-  npm run dev
 
 react watcher terminal:
   cd /home/shaqc/programming/breathereal/frontend

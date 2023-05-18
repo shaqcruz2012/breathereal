@@ -1,5 +1,3 @@
-# App Urls =>
-# Path: navel/app/urls.py
 from django.urls import path
 from . import views
 
@@ -14,5 +12,7 @@ urlpatterns = [
     path('api/v1/spotify/tracks/', views.getTracks, name= 'gettracks'),
     path('', views.send_the_index, name='index'),
     path('api/v1/posts/<int:post_id>/', views.update_post_content, name='update_post_content'),
+    path('api/v1/posts/<int:post_id>/delete/', views.delete_post, name='delete_post'),
+    path('api/v1/user/update/', views.user_update_account, name='update_account'),
 
 ]

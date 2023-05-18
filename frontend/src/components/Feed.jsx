@@ -7,7 +7,6 @@ import BigSearchCard from './BigSearchCard';
 export default function Feed() {
   const [posts, setPosts] = useState([]);
 
-
   const fetchPosts = async () => {
     const posts = await getPosts();
     setPosts(posts);
@@ -18,10 +17,12 @@ export default function Feed() {
   }, []);
 
   return (
-    <Stack className='align-items-center' gap={2}>
-      {posts.map((post) => (
-        <UserPost {...post} />
-      ))}
+    <Stack 
+      className='align-items-center' 
+      gap={2}>
+        {posts.map((post) => (
+          <UserPost {...post} />
+        ))}
     </Stack>
   );
 }

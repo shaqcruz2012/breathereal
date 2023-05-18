@@ -9,7 +9,7 @@ export const signUp = async(name, email, password, state, city) => {
         'state' : state,
         'city' : city
     })
-    console.log(response.data.success)
+    console.log("signUP:",response.data.success)
     return response.data.success
 }
 
@@ -19,7 +19,6 @@ export const logIn = async(email, password, setUser) => {
         'email' : email,
         'password' : password
     })
-
     setUser(response.data)
 }
 
@@ -43,7 +42,29 @@ export const deleteAccount = async () => {
         return true
     }
 }
+
+export const updateAccountName = async (newName) => {
+    let response = await axios.post('api/v1/user/update/', { name: newName });
+    return response.data.success;
+};
+
+
+
+export const deletePost = async (postId) => {
+    let response = await axios.delete(`api/v1/posts/${postId}/delete/`);
+    if (response.data.success){
+        return true
+    } else {
+        return false
+    }
+}
+
 export const getPosts = async() => {
+    let response = await axios.get("api/v1/posts/")
+    console.log(response.data.posts)
+    return response.data.posts;
+}
+export const getUserPosts = async() => {
     let response = await axios.get("api/v1/posts/")
     console.log(response.data.posts)
     return response.data.posts;
@@ -59,11 +80,7 @@ export const createPost = async(content, selectedMusic) => {
 
 export const getLocation = async() => {
     const A = await import.meta.env.VITE_A
-    console.log(A);
-    console.log(import.meta.env);
-    // see vite.config.js for how to set env variables
     let response = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${A}`)
-    // let response = await axios.get('https://api.ipgeolocation.io/ipgeo?apiKey=f90dbca0b5e647bea26eddee90017320')
     return {"state" : response.data.state_prov, "city" : response.data.city};
 }
 
@@ -76,43 +93,10 @@ export const getSong = async() => {
     return response.data.tracks.items[0].preview_url
 }
 
-// export const getSpotifyToken = async() => {
-//     let params = {'grant_type':'client_credentials', 'client_id':`${import.meta.env.VITE_CLIENT_ID}`, 'client_secret':`${import.meta.env.VITE_CLIENT_SECRET}`}
-//     const response = await axios.get('https://accounts.spotify.com/api/token', params, {auth: {client_secret: }})
-//     console.log(response)
-//     return response.data.access_token
-// }
-
-// 
-// export const getSpotifyToken = async () => {
-//     const client_id = import.meta.env.VITE_CLIENT_ID;
-//     const client_secret = import.meta.env.VITE_CLIENT_SECRET;
-    
-//     const response = await axios({
-//         url: 'https://accounts.spotify.com/api/token',
-//         method: 'post',
-//         params: {
-//             grant_type: 'client_credentials',
-//         },
-//         headers: {
-//             'Accept':'application/json',
-//             'Content-Type': 'application/x-www-form-urlencoded',
-//             'X-Csrftoken': undefined,
-//         },
-//         auth: {
-//             username: client_id,
-//             password: client_secret
-//         }
-//     })
-//     console.log(response)
-// };
-
 export const getSpotifyTracks = async(data) => {
-    // calls backend to get the token SC 5/10/2023 1:09 PM
-    console.log(data)
+    console.log('data:',data)
     const queryParams = {search: data['Search Input']}
     const response = await axios.get('api/v1/spotify/tracks/', {params:queryParams})
-    // const response = await axios.get(`api/v1/spotify/tracks/?search=${data['SomethingTest']}`);
     return response.data.tracks.items
 }
 
@@ -123,6 +107,5 @@ export const postContentUpdate = async(content, id) => {
         'content' : content
     })
     console.log('response:',response)
-    // SC 5/12/2023 8:07 PM okay found the problem user not able to update post because it needs to be logged in as that user
     return response.data.success
 }

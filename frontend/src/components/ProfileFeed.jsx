@@ -1,28 +1,35 @@
 import { useState, useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
-import { getPosts } from './utilities';
+import { getPosts, currUser } from './utilities';
 import UserPost from './UserPost';
 import BigSearchCard from './BigSearchCard';
 import ProfilePosts from './ProfilePosts';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
-
-
-  const fetchPosts = async () => {
-    const posts = await getPosts();
-    console.log('profileFeed.jsx posts:', posts)
-    setPosts(posts);
-  };
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    fetchPosts();
+    const fetchUserAndPosts = async () => {
+      // TODO: Do this filtering at the Rest API level 
+      const user = await currUser();
+      setCurrentUser(user);
+      // console.log('profileFeed.jsx currentUser:', user)
+
+      const posts = await getPosts();
+      const userPosts = posts.filter(post => post.user === user.name);
+      setPosts(userPosts);
+      // console.log('profileFeed.jsx posts:', posts)
+
+    };
+        
+    fetchUserAndPosts();
   }, []);
 
   return (
     <Stack className='align-items-center' gap={2}>
       {posts.map((post) => (
-        <ProfilePosts {...post} />
+        post.user === currentUser.name && <ProfilePosts {...post} />
       ))}
     </Stack>
   );

@@ -1,13 +1,19 @@
+/**
+ * @file ProfilePosts.jsx
+ * @brief Displays a user's posts on their profile page.
+ * @details This component is used to display a user's posts on their profile page.
+ * TODO: Update and delete cards: refresh page after update/delete
+ * TODO: Feed go from most recent to least recent
+ */
 import { Card, Image, Stack, Form, InputGroup, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { postContentUpdate } from './utilities';
+import { postContentUpdate, deletePost } from './utilities';
 
 export default function ProfilePosts(props) {
   const { id, content, location, track, user} = props;
   const { track_name, artist_name, imgurl } = track;
   const { city, state } = location;
-  
   const { register, handleSubmit } = useForm();
   const [newContent, setNewContent] = useState([])
   
@@ -18,11 +24,15 @@ export default function ProfilePosts(props) {
     setNewContent(updatedContent);
   };
 
-  async function handleDeletePost(data) {
-    return
-    // todo: delete post from db and refresh page to show updated feed 
-    // 
-  };
+  async function handleDeletePost() {
+    const success = await deletePost(id);
+    if (success) {
+        console.log(`Post ${id} deleted.`);
+    } else {
+        console.log(`Failed to delete post ${id}.`);
+    }
+};
+
 
   return (
     // size this card=>
@@ -35,29 +45,26 @@ export default function ProfilePosts(props) {
                 {imgurl}/>
           </div>
           <div className={'px-1 py-1 '}>
-              <Card.Text className={'text-truncate fs-7 py-0'}>{user} recommends {track_name} in {city}</Card.Text>
+              <Card.Text className={'text-truncate fs-7 py-0'}>
+                {track_name} by {artist_name} - Now in {city} 
+              </Card.Text>
           </div>
           <div>
-            <Card.Text> "{content}"</Card.Text>
-
+            <Card.Text>{user}: "{content}"</Card.Text>
             <Form onSubmit={handleSubmit(handlePostUpdate)}>
               <Form.Group>
-                {/* <Form.Label className={'fs-4'}>Update Post</Form.Label> */}
                 <InputGroup>
                   <Form.Control
                     placeholder="What's the update?"
                     type="text"
                     {...register("Content Input")}
                   />
-                  <Button type="submit">
-                    Update
-                  </Button>
+                  <Button variant="success" type="submit">Update</Button>
                 </InputGroup>
               </Form.Group>
             </Form>
-            
-            {/* <Button variant="primary" onClick={}>Delete post</Button> */}
-            {/* <Card.Text>{location ? `${location.city}, ${location.state}` : "Chicago, IL"}</Card.Text> */}
+            <Button variant="secondary" onClick={handleDeletePost}>Delete Post?</Button>
+            <Button variant="secondary" onClick={() => window.location.reload()}>Apply Changes?</Button>
           </div>
         </Stack>  
       </Card.Body>

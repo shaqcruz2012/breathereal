@@ -1,12 +1,7 @@
-"""_summary_
-    used Franciscos boilerplate from W9D4 
-"""
-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
-# from .models import App_User, serializer
 from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
@@ -14,10 +9,7 @@ from . serializer import *
 from app.models import Post, Track
 from django.forms.models import model_to_dict
 from app.util.spotifyHelpers import getToken, searchTracks
-# from rest_framework import serializers
-# from .models import *
-# from django.core.serializers import serialize
-#
+
 
 import json
 
@@ -32,8 +24,7 @@ class ReactView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
         return Response(serializer.data)
-    # we have saved the data by passing the data to react serializer method.
-    # we have to return the data to the user.
+
 
 @api_view(["POST"])
 def user_sign_up(request):
@@ -43,7 +34,6 @@ def user_sign_up(request):
     name = request.data['name']
     state = request.data['state']
     city = request.data['city']
-    # staff looks unneccesary? 
     super_user = False
     staff = False
     if 'super' in request.data:
@@ -51,8 +41,6 @@ def user_sign_up(request):
     if 'staff' in request.data:
         staff = request.data['staff']
     try:
-        # creates new user
-        # createOrGetLocation
         location, created = Location.objects.get_or_create(state = state, city = city)
         new_user = App_User.objects.create_user(
             username = email, 
@@ -68,7 +56,6 @@ def user_sign_up(request):
         print(e)
         return JsonResponse({"success": False})
 
-
 @api_view(["POST"])
 def user_log_in(request):
     email = request.data['email']
@@ -83,7 +70,6 @@ def user_log_in(request):
             print(e)
             return JsonResponse({'login':False})
     return JsonResponse({'login':False})
-
 
 @api_view(["GET"])
 def curr_user(request):
@@ -121,7 +107,20 @@ def user_delete_account(request):
     except Exception as e:
         print(e)
         print("user not deleted")
-        return JsonResponse({"delete":False})    
+        return JsonResponse({"delete":False}) 
+
+
+@api_view(['POST'])
+def user_update_account(request):
+    new_name = request.data['name']
+    try:
+        user = request.user
+        user.name = new_name
+        user.save()
+        return JsonResponse({"success": True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
     
 def send_the_index(request):
     # returns the index from React Project
@@ -141,7 +140,6 @@ def posts(request):
             user = request.user, 
             location = request.user.location , 
             track = track)
-
         new_post.save() 
         return JsonResponse({"success":True})
     elif request.method == 'GET':
@@ -163,7 +161,6 @@ def getTracks(request):
     token = getToken()
     searchInput = request.GET.get('search')
     tracks = searchTracks(token, searchInput)
-    
     return JsonResponse(tracks, safe=False)
 
 @api_view(['PUT'])
@@ -183,4 +180,18 @@ def update_post_content(request, post_id):
         print(e)
         return JsonResponse({"success": False})
 
+@api_view(['DELETE'])
+def delete_post(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+        if request.user == post.user:
+            post.delete()
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, "error": "User not authorized to delete this post."})
+    except Post.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Post not found."})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
 

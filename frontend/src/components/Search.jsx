@@ -23,16 +23,18 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
       <Stack gap={4}>
         <Form onSubmit={handleSubmit(handleSpotifyAPI)}>
           <Form.Group>
-            <Form.Label className={'fs-4'}>Search for a Track</Form.Label>
+            <Form.Label className={'fs-4'}>
+              Search for a Track
+            </Form.Label>
             <InputGroup>
-            <Form.Control
-              placeholder="what's the vibe rn?"
-              type="text"
-              {...register("Search Input")}
-            />
-            <Button type="submit">
-              Search
-            </Button>
+              <Form.Control
+                placeholder="what's the vibe rn?"
+                type="text"
+                {...register("Search Input")}
+              />
+              <Button variant="success" type="submit">
+                Search
+              </Button>
             </InputGroup>
           </Form.Group>
         </Form>
@@ -42,7 +44,10 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
           <h3 className={'fs-4'}>Post Song</h3>
           {searchResults.length > 0 && 
             selectedMusic === null && 
-            searchResults.map((track) => <SearchCard setSelectedMusic={setSelectedMusic} {...track}/>
+            searchResults.map((track) => 
+            <SearchCard 
+              setSelectedMusic={setSelectedMusic} 
+              {...track}/>
             )}
 
           {selectedMusic && 
@@ -56,7 +61,7 @@ export default function Search ({setSelectedMusic, selectedMusic}) {
               display: 'flex', 
               justifyContent: 'center', 
               alignItems: 'center'}}>
-                <p>You need to search for a song</p>
+                <p>take a breath... song results here...</p>
             </div>}
       </Stack>
     </div>

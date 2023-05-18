@@ -3,12 +3,11 @@ import React from 'react';
 import { Button, Form, Stack } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { createPost } from './utilities';
-import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import Search from './Search';
 
 export default function CreatePost() {
-  const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [ selectedMusic, setSelectedMusic] = useState(null);
 
   function onSubmit(data) {
@@ -34,7 +33,7 @@ export default function CreatePost() {
               {/* todo: disabled={selectedMusic ? false : true}  */}
               <Button 
                 disabled={selectedMusic ? false : true}
-                variant="primary" 
+                variant="success" 
                 type="submit"  >
                 Submit
               </Button>

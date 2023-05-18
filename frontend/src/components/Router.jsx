@@ -26,7 +26,6 @@ const Router = createHashRouter([{
         {
             path:"/feed/",
             element: <FeedPage />,
-            // loader: getTasks
         }
     ]
 }])
